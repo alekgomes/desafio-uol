@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './UsuariosNovo.scss'
 
-class UsuariosNovo extends Component {
-  render() {
+const UsuariosNovo = () => {
     return (
       <div className="painel-clientes__novo">
         <div>
@@ -14,7 +13,6 @@ class UsuariosNovo extends Component {
         </button>
       </div>
     )
-  }
 }
 
 export default UsuariosNovo

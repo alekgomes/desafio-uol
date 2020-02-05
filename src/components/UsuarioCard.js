@@ -1,29 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './UsuarioCard.scss'
 
-class UsuarioCard extends Component {
-
-  render() {
+const UsuarioCard = props => {
     return (
       <div className="user-card">
         <div className="user-card__name">
-          <p>{this.props.user.name}</p>
-          <p>{this.props.user.contact.email}</p>
+          <p>{props.user.name}</p>
+          <p>{props.user.contact.email}</p>
         </div>
         <div className="user-card__phone">
-          <p>{this.props.user.cpf}</p>
-          <p>{this.props.user.contact.tel}</p>
+          <p>{props.user.cpf}</p>
+          <p>{props.user.contact.tel}</p>
         </div>
         <div className="user-card__status">
           <p>
-            <span className={`status ${this.props.user.status.toLowerCase()}`}></span>
-            {this.props.user.status}
+            <span className={`status ${props.user.status.toLowerCase()}`}></span>
+            {props.user.status}
           </p>
         </div>
         <button className="user-card__edit">Editar</button>
       </div>
     )
-  }
 }
 
 export default UsuarioCard
