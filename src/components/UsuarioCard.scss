@@ -1,0 +1,64 @@
+.user-card {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 8px 16px;
+  align-items: center;
+  border: 1px solid #EAEAEA;
+  margin-bottom: 16px;
+  color: #666;
+
+  p {
+    margin: 4px 0;
+  }
+
+  .status {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    margin-right: 6px;
+  }
+
+  .status.ativo {
+    background-color: green;
+  }
+
+  .status.inativo {
+    background-color: #D6323F;
+  }
+
+  .status.aguardando {
+    background-color: #D2A710;
+  }
+
+  .status.desativado {
+    background-color: #D2D2D2;
+  }
+
+  &__name,
+  &__phone {
+    p:first-of-type {
+      font-size: 1.05rem;
+    }
+
+    p:nth-of-type(2) {
+      font-size: .85rem;
+      font-weight: 300;
+    }
+  }
+
+  &__edit {
+    background-color: #fff;
+    color: #E29933;
+    border: 1px solid #E29933;
+    padding: 8px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background-color: #E29933;
+    }
+  }
+}
