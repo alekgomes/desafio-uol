@@ -18,7 +18,9 @@ const UsuarioCard = props => {
             {props.user.status}
           </p>
         </div>
-        <button className="user-card__edit">Editar</button>
+        <div className="user-card__edit">
+          <button>Editar</button>
+        </div>
       </div>
     )
 }

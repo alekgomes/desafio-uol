@@ -1,7 +1,6 @@
 .user-card {
   display: flex;
   width: 100%;
-  justify-content: space-between;
   padding: 8px 16px;
   align-items: center;
   border: 1px solid #EAEAEA;
@@ -36,6 +35,23 @@
     background-color: #D2D2D2;
   }
 
+  &__name {
+    width: 35%
+  }
+
+  &__phone {
+    width: 25%;
+  }
+
+  &__status {
+    width: 30%;
+  }
+
+  &__edit {
+    width: 10%;
+    text-align: center;
+  }
+
   &__name,
   &__phone {
     p:first-of-type {
@@ -48,12 +64,13 @@
     }
   }
 
-  &__edit {
+  &__edit button {
     background-color: #fff;
     color: #E29933;
     border: 1px solid #E29933;
     padding: 8px 22px;
     border-radius: 5px;
+    text-align: center;
     cursor: pointer;
 
     &:hover {
