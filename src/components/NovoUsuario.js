@@ -6,8 +6,6 @@ class NovoUsuario extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // criar objeto
-    // add no localStorage
   }
 
   render() {
