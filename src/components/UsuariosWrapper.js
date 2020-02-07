@@ -14,9 +14,21 @@ class UsuariosWrapper extends Component {
   async componentDidMount() {
     this.setState({loading: true})
     const response = await axios.get('https://demo5283088.mockable.io/customers')
-    const usersFromLocalStorage = await JSON.parse(localStorage.getItem("users"))  
+    const usersFromLocalStorage = await this.getFromLocalStorage()  
     const users = response.data.data.concat(usersFromLocalStorage)
     this.setState({users, loading: false})
+  }
+
+  getFromLocalStorage() {
+    let users;
+
+    if (JSON.parse(localStorage.getItem("users")) == null) {
+      users = []
+    } else {
+      users = JSON.parse(localStorage.getItem("users"))
+    }
+
+    return users
   }
 
   render() {
