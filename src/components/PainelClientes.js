@@ -12,7 +12,7 @@ class PainelClients extends Component {
           Painel de clientes
         </h1>
         <hr className="divider"/>
-        {/* {<NovoUsuario />} */}
+        {<NovoUsuario />}
         <UsuariosWrapper />
       </section>
     )
