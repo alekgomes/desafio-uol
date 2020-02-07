@@ -1,0 +1,15 @@
+.novo-usuario {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & input {
+      margin: 6px 0;
+      border: 1px solid #8492A6;
+      border-radius: 5px;
+      height: 30px;
+      padding-left: 12px;
+    }
+  }
+}

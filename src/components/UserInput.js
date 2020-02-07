@@ -3,11 +3,7 @@ import React, { Component } from 'react'
 class UserInput extends Component {
   render() {
     return (
-      <div>
-        {
-          this.props.id
-        }
-      </div>
+      <input placeholder={this.props.placeholder}/>
     )
   }
 }
