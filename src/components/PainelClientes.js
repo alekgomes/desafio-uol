@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './PainelClientes.scss'
 import UsuariosWrapper from './UsuariosWrapper'
+import NovoUsuario from './NovoUsuario'
 
 class PainelClients extends Component {
   render() {
@@ -11,7 +12,8 @@ class PainelClients extends Component {
           Painel de clientes
         </h1>
         <hr className="divider"/>
-        <UsuariosWrapper />
+        {<NovoUsuario />}
+        {/* <UsuariosWrapper /> */}
       </section>
     )
   }
