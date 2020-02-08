@@ -14,9 +14,10 @@ class UsuariosWrapper extends Component {
 
   async componentDidMount() {
     this.setState({loading: true})
-    const response = await axios.get('https://demo5283088.mockable.io/customers')
+    // const response = await axios.get('https://demo5283088.mockable.io/customers')
     const usersFromLocalStorage = await this.getFromLocalStorage()  
-    const users = response.data.data.concat(usersFromLocalStorage)
+    // const users = response.data.data.concat(usersFromLocalStorage)
+    const users = [].concat(usersFromLocalStorage)
     this.setState({users, loading: false})
 
     PubSub.subscribe('novo-usuario', (topico, data) => {

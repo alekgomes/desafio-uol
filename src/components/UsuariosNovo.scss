@@ -17,11 +17,18 @@
   button {
     background-color:#E29933;
     color:#fff;
-    border: transparent;
+    border: 1px solid transparent;
     display: inline-block;
     height: min-content;
     width: max-content;
     padding: 8px 16px;
     border-radius: 5px;
+
+    &:hover {
+      color: #E29933;
+      border-color: #E29933;
+      background-color: #fff;
+      
+    }
   }
 }

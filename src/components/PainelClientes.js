@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './PainelClientes.scss'
 import UsuariosWrapper from './UsuariosWrapper'
 import NovoUsuario from './NovoUsuario'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 class PainelClients extends Component {
   render() {
@@ -12,8 +13,12 @@ class PainelClients extends Component {
           Painel de clientes
         </h1>
         <hr className="divider"/>
-        {<NovoUsuario />}
-        <UsuariosWrapper />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={UsuariosWrapper}/>
+            <Route path="/novo" component={NovoUsuario} />                     
+          </Switch>
+        </BrowserRouter>
       </section>
     )
   }

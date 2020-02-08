@@ -11,5 +11,26 @@
       height: 30px;
       padding-left: 12px;
     }
+
+    .buttons {
+      margin-top: 16px;
+    }
+
+    .create, .back {
+      padding: 8px 22px;
+      border: 1px solid;
+      border-radius: 5px;
+    }
+
+    .create {
+      color: #fff;
+      background-color: #E29933;
+      margin-right: 8px;
+    }
+
+    .back {
+      color: #E29933;
+      background-color: #fff;
+    }
   }
 }

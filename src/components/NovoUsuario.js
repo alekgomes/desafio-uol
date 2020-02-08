@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import UserInput from './UserInput'
 import './NovoUsuario.scss'
 import PubSub from 'pubsub-js'
+import { Link } from 'react-router-dom'
 
 class NovoUsuario extends Component {
 
@@ -22,7 +23,7 @@ class NovoUsuario extends Component {
     e.preventDefault()    
     const user = this.createUser()
     this.addToLocalStorage(user)
-
+    window.location.href= "/" // vai para página index
     PubSub.publish('novo-usuario', user)
   }
 
@@ -68,8 +69,12 @@ class NovoUsuario extends Component {
             <UserInput id="telefone" name="telefone" placeholder="Telefone" value={this.state.telefone} handleInput={this.handleInput}/>
             <UserInput id="status" name="status"  placeholder="Status" value={this.state.status} handleInput={this.handleInput}/>
             <div className="buttons">
+              
               <button type="submit" className="create">Criar</button>
-              <button className="back">Voltar</button>
+              
+              <Link to="/">
+                <button className="back">Voltar</button>
+              </Link>
             </div>
           </form>
         </section>
