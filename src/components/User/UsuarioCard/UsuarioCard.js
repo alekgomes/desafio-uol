@@ -1,8 +1,10 @@
-import React from 'react'
-import './UsuarioCard.scss'
+import React, { Suspense } from "react";
+import "./UsuarioCard.scss";
+import Button from "../../UI/Button/Button";
 
 const UsuarioCard = props => {
-    return (
+  return (
+    <Suspense>
       <div className="user-card">
         <div className="user-card__name">
           <p>{props.user.name}</p>
@@ -14,15 +16,18 @@ const UsuarioCard = props => {
         </div>
         <div className="user-card__status">
           <p>
-            <span className={`status ${props.user.status.toLowerCase()}`}></span>
+            <span
+              className={`status ${props.user.status.toLowerCase()}`}
+            ></span>
             {props.user.status}
           </p>
         </div>
         <div className="user-card__edit">
-          <button>Editar</button>
+          <Button class="secondary" text="Editar" />
         </div>
       </div>
-    )
-}
+    </Suspense>
+  );
+};
 
-export default UsuarioCard
+export default UsuarioCard;

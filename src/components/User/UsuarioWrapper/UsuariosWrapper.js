@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import './UsuariosWrapper.scss'
-import UsuariosNovo from './UsuariosNovo'
-import UsuariosLista from './UsuariosLista'
-import axios from 'axios'
+import UsuariosLista from '../UsuarioLista/UsuariosLista'
+// import axios from 'axios'
 import PubSub from 'pubsub-js'
 
 class UsuariosWrapper extends Component {
@@ -44,7 +42,6 @@ class UsuariosWrapper extends Component {
 
     return (
       <>
-        <UsuariosNovo />
         {content}
       </>
     )

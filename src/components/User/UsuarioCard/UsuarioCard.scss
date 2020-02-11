@@ -7,6 +7,7 @@
   border: 1px solid #EAEAEA;
   margin-bottom: 16px;
   color: #666;
+  box-sizing: border-box;
 
   p {
     margin: 4px 0;
@@ -62,21 +63,6 @@
     p:nth-of-type(2) {
       font-size: .85rem;
       font-weight: 300;
-    }
-  }
-
-  &__edit button {
-    background-color: #fff;
-    color: #E29933;
-    border: 1px solid #E29933;
-    padding: 8px 22px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-
-    &:hover {
-      color: #fff;
-      background-color: #E29933;
     }
   }
 }
