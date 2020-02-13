@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UsuariosLista from '../UsuarioLista/UsuariosLista'
-// import axios from 'axios'
+import axios from 'axios'
 import PubSub from 'pubsub-js'
 
 class UsuariosWrapper extends Component {
@@ -12,10 +12,10 @@ class UsuariosWrapper extends Component {
 
   async componentDidMount() {
     this.setState({loading: true})
-    // const response = await axios.get('https://demo5283088.mockable.io/customers')
-    const usersFromLocalStorage = await this.getFromLocalStorage()  
-    // const users = response.data.data.concat(usersFromLocalStorage)
-    const users = [].concat(usersFromLocalStorage)
+    const usersFromApi = await this.getFromApi()
+    const usersFromLocalStorage = await this.getFromLocalStorage()
+
+    const users = await usersFromApi.concat(usersFromLocalStorage)
     this.setState({users, loading: false})
 
     PubSub.subscribe('novo-usuario', (topico, data) => {
@@ -23,6 +23,13 @@ class UsuariosWrapper extends Component {
       const newUsers = users.concat(data)
       this.setState({users: newUsers})
     })
+  }
+
+  async getFromApi() {
+    // const users = await axios.get('https://demo5283088.mockable.io/customers')
+    // console.log(users)
+    // API NÃO ESTÁ FUNCIONANDO
+    return []
   }
 
   getFromLocalStorage() {

@@ -6,7 +6,7 @@
 
     & input {
       margin: 6px 0;
-      border: 1px solid #8492A6;
+      border: 1px solid #8492a6;
       border-radius: 5px;
       height: 30px;
       padding-left: 12px;
@@ -16,7 +16,8 @@
       margin-top: 16px;
     }
 
-    .create, .back {
+    .create,
+    .back {
       padding: 8px 22px;
       border: 1px solid;
       border-radius: 5px;
@@ -24,13 +25,21 @@
 
     .create {
       color: #fff;
-      background-color: #E29933;
+      background-color: #e29933;
       margin-right: 8px;
     }
 
     .back {
-      color: #E29933;
+      color: #e29933;
       background-color: #fff;
     }
   }
+}
+
+.alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  width: max-content;
+  padding: 4px 8px;
 }

@@ -18,7 +18,7 @@ const UsuariosLista = (props) => {
       </div>
       <div className="painel-clientes__lista">
         {props.users.map(user => {
-          return <UsuarioCard user={user} key={user._id} />;
+          return <UsuarioCard user={user} key={user._id}/>;
         })}
       </div>
     </>

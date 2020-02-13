@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import UserInput from "../../UI/UserInput/UserInput";
-import "./NovoUsuario.scss";
-import PubSub from "pubsub-js";
 import { Link } from "react-router-dom";
-import InputMask from "inputmask";
 
-class NovoUsuario extends Component {
+class EditarUsuario extends Component {
   state = {
+    _id: this.props.match.params.id,
     name: "",
     email: "",
     cpf: "",
@@ -14,82 +12,32 @@ class NovoUsuario extends Component {
     status: ""
   };
 
-  cpfMask = new InputMask("999.999.999-99");
-
   handleInput = e => {
-    if (e.target.name === "cpf") {
-      this.setState({
-        [e.target.name]: this.cpfMask.mask(document.getElementsByName("cpf"))
-      });
-    }
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    if (this.hasEmptyInput(this.state)) {
-      this.setAlert("Por favor, preencha todos os campos");
-    } else {
-      this.setAlert("");
-      const user = this.createUser();
-      this.addToLocalStorage(user);
-      this.clearForm();
-      PubSub.publish("novo-usuario", user);
-    }
-  };
-
-  setAlert = msg => {
-    this.setState({ alert: msg });
-  };
-
-  clearForm = () => {
-    this.setState({ name: "", email: "", cpf: "", tel: "", status: "" });
-  };
-
-  addToLocalStorage = user => {
-    let users;
-
-    if (JSON.parse(localStorage.getItem("users")) == null) {
-      users = [];
-    } else {
-      users = JSON.parse(localStorage.getItem("users"));
-    }
-
-    users = users.concat(user);
-    localStorage.setItem("users", JSON.stringify(users));
-  };
-
-  createUser = () => {
-    const user = {
-      _id: this.state.cpf,
-      name: this.state.name,
-      cpf: this.state.cpf,
-      contact: {
-        email: this.state.email,
-        tel: this.state.tel
-      },
-      status: this.state.status
-    };
-
-    return user;
-  };
-
-  hasEmptyInput = inputs => {
-    let empty = false;
-  
-    Object.values(inputs).map(input => {
-      if (input === "") {
-        empty = true;
+  getUser = () => {
+    const users = JSON.parse(localStorage.getItem("users"))
+    let user = ""
+    users.map(u => {      
+      if (u._id === this.state._id){
+        user = u
       }
-    });
-    return empty;
-  };
+    })
+
+    return user
+  }
+
+  componentDidMount() {
+    this.setState(this.getUser())
+  }
 
   render() {
+    
     return (
       <section className="novo-usuario">
         <div className="novo-usuario__header">
-          <p>Novo Usuário</p>
+          <p>Editar Usuário</p>
           <p>Informe os campos a seguir para criar novo usuário:</p>
         </div>
         {/* {this.state.alert && <p className="alert">{this.state.alert}</p>} */}
@@ -138,7 +86,7 @@ class NovoUsuario extends Component {
           />
           <div className="buttons">
             <button type="submit" className="create">
-              Criar
+              Atualizar
             </button>
             <Link to="/">
               <button className="back">Voltar</button>
@@ -150,4 +98,4 @@ class NovoUsuario extends Component {
   }
 }
 
-export default NovoUsuario;
+export default EditarUsuario;
