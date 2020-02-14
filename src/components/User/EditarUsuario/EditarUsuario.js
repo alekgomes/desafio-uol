@@ -6,9 +6,11 @@ class EditarUsuario extends Component {
   state = {
     _id: this.props.match.params.id,
     name: "",
-    email: "",
+    contact: {
+      email: "",
+      tel: ""
+    },
     cpf: "",
-    tel: "",
     status: ""
   };
 
@@ -16,24 +18,47 @@ class EditarUsuario extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  getUser = () => {
-    const users = JSON.parse(localStorage.getItem("users"))
-    let user = ""
-    users.map(u => {      
-      if (u._id === this.state._id){
-        user = u
-      }
-    })
+  handleSubmit = e => {
+    e.preventDefault();
+    this.updateUser();
+  };
 
-    return user
-  }
+  updateUser = () => {
+    let user = this.getUser();
+    user = Object.assign(user, this.state);
+    const newUsers = this.removeUser(this.state);
+    newUsers.push(user)
+    localStorage.setItem("users", JSON.stringify(newUsers));
+  };
+
+  getUser = () => {
+    const users = JSON.parse(localStorage.getItem("users"));
+    let user = "";
+    users.map(u => {
+      if (u._id === this.state._id) {
+        user = u;
+      }
+    });
+
+    return user;
+  };
+
+  removeUser = user => {
+    const users = JSON.parse(localStorage.getItem("users"));
+    users.map((u, index) => {
+      if (u._id === user._id) {
+        users.splice(index, 1);
+        console.log(u);
+      }
+    });
+    return users;
+  };
 
   componentDidMount() {
-    this.setState(this.getUser())
+    this.setState(this.getUser());
   }
 
   render() {
-    
     return (
       <section className="novo-usuario">
         <div className="novo-usuario__header">
@@ -55,7 +80,7 @@ class EditarUsuario extends Component {
             id="email"
             name="email"
             placeholder="E-mail"
-            value={this.state.email}
+            value={this.state.contact.email}
             handleInput={this.handleInput}
             type="email"
           />
@@ -72,7 +97,7 @@ class EditarUsuario extends Component {
             id="telefone"
             name="tel"
             placeholder="Telefone"
-            value={this.state.tel}
+            value={this.state.contact.tel}
             handleInput={this.handleInput}
             type="text"
           />
@@ -85,7 +110,11 @@ class EditarUsuario extends Component {
             type="select"
           />
           <div className="buttons">
-            <button type="submit" className="create">
+            <button
+              type="submit"
+              onSubmit={this.handleSubmit}
+              className="create"
+            >
               Atualizar
             </button>
             <Link to="/">
