@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import UserInput from "../../UI/UserInput/UserInput";
+import Alert from '../../UI/Alert/Alert'
+import PubSub from 'pubsub-js'
 import { Link } from "react-router-dom";
 
 class EditarUsuario extends Component {
@@ -21,13 +23,14 @@ class EditarUsuario extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.updateUser();
+    PubSub.publish("alerta", {msg:"Usuário Atualizado com Sucesso", style:"success"})
   };
 
   updateUser = () => {
     let user = this.getUser();
     user = Object.assign(user, this.state);
     const newUsers = this.removeUser(this.state);
-    newUsers.push(user)
+    newUsers.push(user);
     localStorage.setItem("users", JSON.stringify(newUsers));
   };
 
@@ -65,7 +68,7 @@ class EditarUsuario extends Component {
           <p>Editar Usuário</p>
           <p>Informe os campos a seguir para criar novo usuário:</p>
         </div>
-        {/* {this.state.alert && <p className="alert">{this.state.alert}</p>} */}
+        <Alert/>
         <form className="novo-usuario__form" onSubmit={this.handleSubmit}>
           <UserInput
             id="name"
@@ -101,14 +104,18 @@ class EditarUsuario extends Component {
             handleInput={this.handleInput}
             type="text"
           />
-          <UserInput
-            id="status"
+          <select
             name="status"
+            id="status"
             placeholder="Status"
             value={this.state.status}
-            handleInput={this.handleInput}
-            type="select"
-          />
+            onChange={this.handleInput}
+          >
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+            <option value="aguardando">Aguardando</option>
+            <option value="desativado">Desativado</option>
+          </select>
           <div className="buttons">
             <button
               type="submit"

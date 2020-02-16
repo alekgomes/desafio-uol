@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserInput from "../../UI/UserInput/UserInput";
+import Alert from '../../UI/Alert/Alert'
 import "./NovoUsuario.scss";
 import PubSub from "pubsub-js";
 import { Link } from "react-router-dom";
@@ -28,18 +29,14 @@ class NovoUsuario extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.hasEmptyInput(this.state)) {
-      this.setAlert("Por favor, preencha todos os campos");
+      PubSub.publish("alerta", {msg:"Por favor, preencha todos os campos", style:"error"})
     } else {
-      this.setAlert("");
+      PubSub.publish("alerta", {msg:"Usuário criado com sucesso", style:"success"})
       const user = this.createUser();
       this.addToLocalStorage(user);
       this.clearForm();
       PubSub.publish("novo-usuario", user);
     }
-  };
-
-  setAlert = msg => {
-    this.setState({ alert: msg });
   };
 
   clearForm = () => {
@@ -76,7 +73,7 @@ class NovoUsuario extends Component {
 
   hasEmptyInput = inputs => {
     let empty = false;
-  
+
     Object.values(inputs).map(input => {
       if (input === "") {
         empty = true;
@@ -92,7 +89,8 @@ class NovoUsuario extends Component {
           <p>Novo Usuário</p>
           <p>Informe os campos a seguir para criar novo usuário:</p>
         </div>
-        {/* {this.state.alert && <p className="alert">{this.state.alert}</p>} */}
+        <Alert />
+        {this.state.alert && <p className="alert">{this.state.alert}</p>}
         <form className="novo-usuario__form" onSubmit={this.handleSubmit}>
           <UserInput
             id="name"
@@ -128,14 +126,19 @@ class NovoUsuario extends Component {
             handleInput={this.handleInput}
             type="text"
           />
-          <UserInput
-            id="status"
+          <select
             name="status"
+            id="status"
             placeholder="Status"
             value={this.state.status}
-            handleInput={this.handleInput}
-            type="select"
-          />
+            onChange={this.handleInput}
+          >
+            <option value="status">Status</option>
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+            <option value="aguardando">Aguardando</option>
+            <option value="desativado">Desativado</option>
+          </select>
           <div className="buttons">
             <button type="submit" className="create">
               Criar
